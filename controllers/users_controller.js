@@ -48,5 +48,12 @@ users.update = function(req, res){
   });
 };
 
+users.destroy = function(req, res){
+  User.findByIdAndRemove(req.params.id, function(err){
+    if (err) throw err;
+    res.json({success: true, message: "user destroyed"});
+  });
+};
+
 module.exports = users;
 
