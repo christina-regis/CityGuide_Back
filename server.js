@@ -30,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //setting routes
 var userRoutes = require('./routes/users.js');
 app.use('/users', userRoutes);
+var guideRoutes = require('./routes/guides.js');
+app.use('/guides', guideRoutes);
 
 app.listen(port);
 console.log('puppies are listening on port ' + port);
