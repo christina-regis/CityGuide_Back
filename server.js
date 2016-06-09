@@ -32,5 +32,5 @@ var userRoutes = require('./routes/users.js');
 app.use('/users', userRoutes);
 
 app.listen(port);
-console.log('puppies are listenng on port ' + port);
+console.log('puppies are listening on port ' + port);
 
