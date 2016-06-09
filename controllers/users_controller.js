@@ -26,5 +26,27 @@ users.create = function(req, res){
   });
 };
 
+users.show = function(req, res){
+  User.findById(req.params.id, function(err, user){
+    if(err){
+      throw err;
+    }
+    res.json(user);
+  });
+};
+
+users.update = function(req, res){
+  User.findById(req.params.id, function(err, user){
+    if (err) throw err;
+    user.email = req.body.email;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.save(function(err){
+      if (err) throw err;
+      res.json(user);
+    });
+  });
+};
+
 module.exports = users;
 
