@@ -6,9 +6,9 @@ router.route('/')
   .get(guidesController.index)
   .post(guidesController.create);
 
-// router.route('/:id')
-//   .get(guidesController.show)
-//   .patch(guidesController.update)
-//   .delete(guidesController.destroy);
+router.route('/:id')
+  .get(guidesController.show)
+  .patch(guidesController.update)
+  .delete(guidesController.destroy);
 
 module.exports = router;

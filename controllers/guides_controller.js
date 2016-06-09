@@ -26,4 +26,33 @@ guides.create = function(req, res){
   });
 };
 
+guides.show = function(req, res){
+  Guide.findById(req.params.id, function(err, guide){
+    if(err){
+      throw err;
+    }
+    res.json(guide);
+  });
+};
+
+guides.update = function(req, res){
+  Guide.findById(req.params.id, function(err, guide){
+    if (err) throw err;
+    guide.email = req.body.email;
+    guide.firstName = req.body.firstName;
+    guide.lastName = req.body.lastName;
+    guide.save(function(err){
+      if (err) throw err;
+      res.json(guide);
+    });
+  });
+};
+
+guides.destroy = function(req, res){
+  Guide.findByIdAndRemove(req.params.id, function(err){
+    if (err) throw err;
+    res.json({success: true, message: "guide destroyed"});
+  });
+};
+
 module.exports = guides;
