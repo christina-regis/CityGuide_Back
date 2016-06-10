@@ -4,6 +4,7 @@ var tourSchema = mongoose.Schema({
   city: String,
   //yyyy-mm-dd
   date: Date,
+  time: String,
   description: String,
   price: Number,
   completed: Boolean
