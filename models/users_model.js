@@ -5,7 +5,10 @@ var userSchema = mongoose.Schema({
   password: String,
   email: String,
   firstName: String,
-  lastName: String
+  lastName: String,
+  phoneNumber: String,
+  description: String,
+  guide: Boolean
 });
 
 userSchema.methods.validPassword = function(pwd){

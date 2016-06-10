@@ -5,7 +5,19 @@ var guideSchema = mongoose.Schema({
   password: String,
   email: String,
   firstName: String,
-  lastName: String
+  lastName: String,
+  description: String,
+  phoneNumber: String,
+  country: String,
+  city: String,
+  zipCode: Number,
+  info: String,
+  minTime: Number,
+  maxTime: Number,
+  price: Number,
+  //user reference
+  // reference tour model
+  tours : [{ type: Schema.Types.ObjectId, ref: 'Tour' }]
 });
 
 guideSchema.methods.validPassword = function(pwd){
@@ -19,3 +31,4 @@ guideSchema.methods.encrypt = function(pwd){
 var Guide = mongoose.model('Guide', guideSchema);
 
 module.exports = Guide;
+
