@@ -16,8 +16,9 @@ var guideSchema = mongoose.Schema({
   maxTime: Number,
   price: Number,
   //user reference
+
   // reference tour model
-  tours : [{ type: Schema.Types.ObjectId, ref: 'Tour' }]
+  tours : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tour' }]
 });
 
 guideSchema.methods.validPassword = function(pwd){

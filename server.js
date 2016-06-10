@@ -32,6 +32,8 @@ var userRoutes = require('./routes/users.js');
 app.use('/users', userRoutes);
 var guideRoutes = require('./routes/guides.js');
 app.use('/guides', guideRoutes);
+var tourRoutes = require('./routes/tours.js');
+app.use('/tours', tourRoutes);
 
 app.listen(port);
 console.log('puppies are listening on port ' + port);
