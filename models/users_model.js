@@ -8,7 +8,9 @@ var userSchema = mongoose.Schema({
   lastName: String,
   phoneNumber: String,
   description: String,
-  guide: Boolean
+  guide: Boolean,
+  //reference tour model
+  tours: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tour'}]
 });
 
 userSchema.methods.validPassword = function(pwd){

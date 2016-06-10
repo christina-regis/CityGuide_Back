@@ -6,9 +6,9 @@ router.route('/')
   .get(toursController.index)
   .post(toursController.create);
 
-// router.route('/:id')
-//   .get(toursController.show)
-//   .patch(toursController.update)
-//   .delete(toursController.destroy);
+router.route('/:id')
+  .get(toursController.show)
+  .patch(toursController.update)
+  .delete(toursController.destroy);
 
 module.exports = router;
