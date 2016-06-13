@@ -7,8 +7,9 @@ var tourSchema = mongoose.Schema({
   time: String,
   description: String,
   price: Number,
-  completed: Boolean,
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  completed: {type: Boolean, default: false},
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  guide: {type: mongoose.Schema.Types.ObjectId, ref: 'Guide'}
 });
 
 var Tour = mongoose.model('Tour', tourSchema);

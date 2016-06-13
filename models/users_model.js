@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
   lastName: String,
   phoneNumber: String,
   description: String,
-  guide: Boolean,
+  guide: {type: Boolean, default: false},
   //reference tour model
   tours: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tour'}]
 });

@@ -18,6 +18,10 @@ users.create = function(req, res){
   user.email = req.body.email;
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
+  user.phoneNumber = req.body.phoneNumber;
+  user.description = req.body.description;
+  user.guide = req.body.guide;
+  user.tours = req.body.toursId;
   user.save(function(err){
     if(err){
       throw err;
@@ -27,7 +31,9 @@ users.create = function(req, res){
 };
 
 users.show = function(req, res){
-  User.findById(req.params.id, function(err, user){
+  User.findById(req.params.id)
+  .populate('tours')
+  .exec(function(err, user){
     if(err){
       throw err;
     }
@@ -41,6 +47,10 @@ users.update = function(req, res){
     user.email = req.body.email;
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
+    user.phoneNumber = req.body.phoneNumber;
+    user.description = req.body.description;
+    user.guide = req.body.guide;
+    user.tours = req.body.toursId;
     user.save(function(err){
       if (err) throw err;
       res.json(user);

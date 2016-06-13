@@ -18,6 +18,17 @@ guides.create = function(req, res){
   guide.email = req.body.email;
   guide.firstName = req.body.firstName;
   guide.lastName = req.body.lastName;
+  guide.description = req.body.description;
+  guide.phoneNumber = req.body.phoneNumber;
+  guide.country = req.body.country;
+  guide.city = req.body.city;
+  guide.zipCode = req.body.zipCode;
+  guide.info = req.body.info;
+  guide.minTime = req.body.minTime;
+  guide.maxTime = req.body.maxTime;
+  guide.price = req.body.price;
+  guide.user = req.body.userId;
+  guide.tours = req.body.toursId;
   guide.save(function(err){
     if(err){
       throw err;
@@ -27,7 +38,9 @@ guides.create = function(req, res){
 };
 
 guides.show = function(req, res){
-  Guide.findById(req.params.id, function(err, guide){
+  Guide.findById(req.params.id)
+  .populate('user', 'tours')
+  .exec(function(err, guide){
     if(err){
       throw err;
     }
@@ -41,6 +54,17 @@ guides.update = function(req, res){
     guide.email = req.body.email;
     guide.firstName = req.body.firstName;
     guide.lastName = req.body.lastName;
+    guide.description = req.body.description;
+    guide.phoneNumber = req.body.phoneNumber;
+    guide.country = req.body.country;
+    guide.city = req.body.city;
+    guide.zipCode = req.body.zipCode;
+    guide.info = req.body.info;
+    guide.minTime = req.body.minTime;
+    guide.maxTime = req.body.maxTime;
+    guide.price = req.body.price;
+    guide.user = req.body.userId;
+    guide.tours = req.body.toursId;
     guide.save(function(err){
       if (err) throw err;
       res.json(guide);

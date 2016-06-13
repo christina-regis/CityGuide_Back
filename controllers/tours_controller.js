@@ -20,6 +20,8 @@ tours.create = function(req, res){
   tour.description = req.body.description;
   tour.price = req.body.price;
   tour.completed = req.body.completed;
+  tour.user = req.body.userId;
+  tour.guide = req.body.guideId;
   tour.save(function(err){
     if(err){
       throw err;
@@ -29,7 +31,9 @@ tours.create = function(req, res){
 };
 
 tours.show = function(req, res){
-  Tour.findById(req.params.id, function(err, tour){
+  Tour.findById(req.params.id)
+  .populate('guide', 'user')
+  .exec(function(err, tour){
     if(err){
       throw err;
     }
@@ -46,6 +50,8 @@ tours.update = function(req, res){
     tour.description = req.body.description;
     tour.price = req.body.price;
     tour.completed = req.body.completed;
+    tour.user = req.body.user;
+    tour.guide = req.body.guideId;
     tour.save(function(err){
       if (err) throw err;
       res.json(tour);
