@@ -14,6 +14,8 @@ tours.index = function(req, res){
 
 tours.create = function(req, res){
   var tour = new Tour();
+  tour.title= req.body.title;
+  tour.country = req.body.country;
   tour.city = req.body.city;
   tour.date = req.body.date;
   tour.time = req.body.time;
@@ -44,6 +46,8 @@ tours.show = function(req, res){
 tours.update = function(req, res){
   Tour.findById(req.params.id, function(err, tour){
     if (err) throw err;
+    tour.title= req.body.title;
+    tour.country = req.body.country;
     tour.city = req.body.city;
     tour.date = req.body.date;
     tour.time = req.body.time;

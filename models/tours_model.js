@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
 var tourSchema = mongoose.Schema({
+  title: String,
+  country: String,
   city: String,
   //yyyy-mm-dd
   date: Date,
