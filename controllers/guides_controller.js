@@ -3,6 +3,20 @@ var Guide = require('../models/guides_model.js');
 
 var guides = {};
 
+guides.authenticate = function(req, res){
+  if (req.body){
+  console.log("hello");
+    var email = req.body.email.toLowerCase();
+    var password = req.body.password;
+    Guide.findOne({email: email})
+      .then(function(guide){
+        if(guide.password === req.body.password){
+        res.json(guide);
+        }
+      });
+  }
+};
+
 guides.index = function(req, res){
   Guide.find({}, function(err, guides){
     if(err){

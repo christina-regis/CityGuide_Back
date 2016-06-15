@@ -3,6 +3,20 @@ var User = require('../models/users_model.js');
 
 var users = {};
 
+users.authenticate = function(req, res){
+  if (req.body){
+  console.log("hello");
+    var email = req.body.email.toLowerCase();
+    var password = req.body.password;
+    User.findOne({email: email})
+      .then(function(user){
+        if(user.password === req.body.password){
+        res.json(user);
+        }
+      });
+  }
+};
+
 users.index = function(req, res){
   User.find({}, function(err, users){
     if(err){

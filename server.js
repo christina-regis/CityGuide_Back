@@ -34,6 +34,8 @@ var guideRoutes = require('./routes/guides.js');
 app.use('/guides', guideRoutes);
 var tourRoutes = require('./routes/tours.js');
 app.use('/tours', tourRoutes);
+var guideAuthRoutes = require('./routes/guideAuth.js');
+app.use('/guideauth', guideAuthRoutes);
 
 app.listen(port);
 console.log('puppies are listening on port ' + port);
