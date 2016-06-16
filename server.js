@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //setting routes
-var guideAuthRoutes = require('./routes/guideAuth.js');
-app.use('/guideauth', guideAuthRoutes);
+var authRoutes = require('./routes/auth.js');
+app.use('/auth', authRoutes);
 var userRoutes = require('./routes/users.js');
 app.use('/users', userRoutes);
 var guideRoutes = require('./routes/guides.js');

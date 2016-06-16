@@ -5,14 +5,19 @@ var users = {};
 
 users.authenticate = function(req, res){
   if (req.body){
-  console.log("hello");
     var email = req.body.email.toLowerCase();
     var password = req.body.password;
+    console.log(email, password);
     User.findOne({email: email})
       .then(function(user){
-        if(user.password === req.body.password){
+        if(user.validPassword(password)){
         res.json(user);
+        } else {
+          res.json('Uh oh');
         }
+      }).catch(function(err){
+        console.log('Got an error', err);
+        res.json(err);
       });
   }
 };

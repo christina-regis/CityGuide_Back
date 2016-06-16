@@ -1,28 +1,8 @@
 db = require('../db.js');
+var jwt = require('jsonwebtoken');
 var Guide = require('../models/guides_model.js');
 
 var guides = {};
-
-guides.authenticate = function(req, res){
-  if (req.body){
-    var email = req.body.email.toLowerCase();
-    var password = req.body.password;
-    console.log(email, password);
-    Guide.findOne({email: email})
-      .then(function(guide){
-        // console.log('========',guide.validPassword);
-        // console.log('CHECK', guide.validPassword(password))
-        if(guide.validPassword(password)){
-        res.json(guide);
-        } else {
-          res.json('Uh oh');
-        }
-      }).catch(function(err){
-        console.log('Got an error', err);
-        res.json(err);
-      });
-  }
-};
 
 guides.index = function(req, res){
   Guide.find({}, function(err, guides){
