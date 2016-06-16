@@ -1,5 +1,4 @@
 db = require('../db.js');
-var jwt = require('jsonwebtoken');
 var Guide = require('../models/guides_model.js');
 
 var guides = {};

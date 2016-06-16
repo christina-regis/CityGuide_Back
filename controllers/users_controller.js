@@ -1,5 +1,7 @@
 db = require('../db.js');
 var User = require('../models/users_model.js');
+var jwt = require('jsonwebtoken');
+var secret = 'CityGuide';
 
 var users = {};
 
@@ -7,10 +9,11 @@ users.authenticate = function(req, res){
   if (req.body){
     var email = req.body.email.toLowerCase();
     var password = req.body.password;
-    console.log(email, password);
     User.findOne({email: email})
       .then(function(user){
         if(user.validPassword(password)){
+          var token = jwt.sign({email: email, id: user._id}, secret, {expiresIn: 3600});
+          console.log("token", token);
         res.json(user);
         } else {
           res.json('Uh oh');
