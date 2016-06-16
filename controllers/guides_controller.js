@@ -5,14 +5,21 @@ var guides = {};
 
 guides.authenticate = function(req, res){
   if (req.body){
-  console.log("hello");
     var email = req.body.email.toLowerCase();
     var password = req.body.password;
+    console.log(email, password);
     Guide.findOne({email: email})
       .then(function(guide){
-        if(guide.password === req.body.password){
+        // console.log('========',guide.validPassword);
+        // console.log('CHECK', guide.validPassword(password))
+        if(guide.validPassword(password)){
         res.json(guide);
+        } else {
+          res.json('Uh oh');
         }
+      }).catch(function(err){
+        console.log('Got an error', err);
+        res.json(err);
       });
   }
 };

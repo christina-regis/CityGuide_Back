@@ -22,7 +22,8 @@ var guideSchema = mongoose.Schema({
 });
 
 guideSchema.methods.validPassword = function(pwd){
-  return bcrypt.compareSync(pwd, this.password);
+  var guide = this;
+  return bcrypt.compareSync(pwd, guide.password);
 };
 
 guideSchema.methods.encrypt = function(pwd){
