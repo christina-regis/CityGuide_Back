@@ -12,7 +12,7 @@ users.authenticate = function(req, res){
     User.findOne({email: email})
       .then(function(user){
         if(user.validPassword(password)){
-          var token = jwt.sign({email: email, id: user._id}, secret, {expiresIn: 3600});
+          var token = jwt.sign({email: email, id: user._id, name: user.firstName}, secret, {expiresIn: 3600});
           console.log("token", token);
         res.json(user);
         } else {
@@ -42,8 +42,10 @@ users.create = function(req, res){
   user.lastName = req.body.lastName;
   user.phoneNumber = req.body.phoneNumber;
   user.description = req.body.description;
-  user.guide = req.body.guide;
-  user.tours = req.body.toursId;
+  // user.guide = req.body.guide;
+  // user.tours = req.body.toursId;
+  var token = jwt.sign({email: req.body.email, id: user._id, name: req.body.firstName}, secret, {expiresIn: 3600});
+  console.log("create token", token);
   user.save(function(err){
     if(err){
       throw err;
